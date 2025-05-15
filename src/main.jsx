@@ -1,4 +1,3 @@
-// src/main.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -9,6 +8,7 @@ import Home from './pages/Home';
 import CountryDetail from './pages/CountryDetail';
 import Login from './pages/Login';
 import { UserProvider } from './context/UserContext';
+import PrivateRoute from './routes/PrivateRoute';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,8 +16,24 @@ createRoot(document.getElementById('root')).render(
       <UserProvider>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<Home />} />
-            <Route path="country/:code" element={<CountryDetail />} />
+            {/* Protect Home */}
+            <Route
+              index
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            />
+            {/* Protect Country Detail */}
+            <Route
+              path="country/:code"
+              element={
+                <PrivateRoute>
+                  <CountryDetail />
+                </PrivateRoute>
+              }
+            />
             <Route path="login" element={<Login />} />
           </Route>
         </Routes>
