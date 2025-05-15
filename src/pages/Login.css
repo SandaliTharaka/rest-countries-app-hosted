@@ -1,0 +1,19 @@
+/* src/pages/Login.css */
+.login-bg {
+    background: linear-gradient(-45deg, #c6e3eb, #6f94c2, #98dcef, #6d8fb9);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
