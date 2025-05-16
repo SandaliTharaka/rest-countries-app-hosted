@@ -33,3 +33,7 @@ country data including:
 - Languages & capital cities
 ## License
 For educational use only.
+## 🌐 Hosted Application
+You can view the hosted app here:  
+🔗 [Live Demo](https://rest-countries-app-hosted.vercel.app)
+
