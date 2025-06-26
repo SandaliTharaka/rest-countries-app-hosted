@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { useEffect, useState } from 'react';
 
+
 export default function Navbar() {
   const { user, logout } = useUser();
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function Navbar() {
         🌍 Country Explorer
       </Link>
       <div className="flex items-center gap-4 text-sm font-medium">
+        
         {user ? (
           <>
             <span className="hidden sm:inline">Welcome, {user.username}</span>
