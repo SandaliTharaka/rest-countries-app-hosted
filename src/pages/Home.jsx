@@ -38,7 +38,7 @@ export default function Home() {
     }
 
     setFilteredCountries(filtered);
-  }, [search, region, language, countries,]);
+  }, [search, region, language, countries]);
 
   const allLanguages = Array.from(
     new Set(
