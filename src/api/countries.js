@@ -1,20 +1,47 @@
 const BASE_URL = "https://restcountries.com/v3.1";
 
+//  FIXED: Added required ?fields=... to avoid 400 error
 export const getAllCountries = async () => {
-    const res = await fetch('https://restcountries.com/v3.1/all');
-    if (!res.ok) throw new Error('Failed to fetch countries');
+  try {
+    const res = await fetch(
+      `${BASE_URL}/all?fields=name,flags,region,languages,cca3`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+        mode: "cors",
+      }
+    );
+
+    if (!res.ok) throw new Error("Failed to fetch countries");
     return await res.json();
-  };
-  
+  } catch (error) {
+    console.error("Error fetching countries:", error);
+    return [];
+  }
+};
 
-export const getCountryByName = (name) => fetch(`${BASE_URL}/name/${name}`).then(res => res.json());
+// Optional: Add .ok check here too
+export const getCountryByName = async (name) => {
+  const res = await fetch(
+    `${BASE_URL}/name/${name}?fields=name,flags,region,languages,cca3`
+  );
+  if (!res.ok) throw new Error("Failed to fetch country by name");
+  return await res.json();
+};
 
-export const getCountriesByRegion = (region) => fetch(`${BASE_URL}/region/${region}`).then(res => res.json());
-
+export const getCountriesByRegion = async (region) => {
+  const res = await fetch(
+    `${BASE_URL}/region/${region}?fields=name,flags,region,languages,cca3`
+  );
+  if (!res.ok) throw new Error("Failed to fetch countries by region");
+  return await res.json();
+};
 
 export const getCountryByCode = async (code) => {
-    const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
-    if (!res.ok) throw new Error('Failed to fetch country by code');
-    return await res.json();
-  };
-  
+  const res = await fetch(
+    `${BASE_URL}/alpha/${code}?fields=name,flags,region,languages,cca3`
+  );
+  if (!res.ok) throw new Error("Failed to fetch country by code");
+  return await res.json();
+};
